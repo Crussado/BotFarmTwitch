@@ -1,0 +1,10 @@
+{
+    "name": "Bot Farm Twitch",
+    "description": "Bot para farmear puntos en la plataforma de Twitch.",
+    "version": "1.0",
+    "manifest_version": 3,
+
+    "action": {
+        "default_popup": "popup.html"
+    }
+}
