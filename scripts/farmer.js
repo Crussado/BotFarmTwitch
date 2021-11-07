@@ -1,7 +1,7 @@
-const TIME_BUTTON = 100000;
+const TIME_BUTTON = 900000;
 
 function getButton() {
-    return document.querySelectorAll('button.ScCoreButton-sc-1qn4ixc-0.ScCoreButtonSuccess-sc-1qn4ixc-5');
+    return document.querySelectorAll('button.ScCoreButton-sc-1qn4ixc-0.ScCoreButtonSuccess-sc-1qn4ixc-5')[0];
 }
 
 function farm() {
