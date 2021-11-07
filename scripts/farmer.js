@@ -4,19 +4,30 @@ function getButton() {
     return document.querySelectorAll('button.ScCoreButton-sc-1qn4ixc-0.ScCoreButtonSuccess-sc-1qn4ixc-5')[0];
 }
 
+function getPoints() {
+    const button = getButton();
+        if (button) {
+            button.click()
+        }
+}
+
 function farm() {
+    getPoints();
     setTimeout(() => {
-        getButton().click();
         farm();
     }, TIME_BUTTON);
 }
 
+function ifStreamPage() {
+    return document.querySelectorAll('h4#chat-room-header-label').length == 1;
+}
 
 function main () {
-    window.onload = function funLoad() { 
-        getButton().click();
-        farm();
-    } 
+    window.onload = function funLoad() {
+        if(ifStreamPage()) {
+            farm();
+        }
+    }
 }
 
 main();
