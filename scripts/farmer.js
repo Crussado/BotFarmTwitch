@@ -13,7 +13,10 @@ function farm() {
 
 
 function main () {
-    farm();
+    window.onload = function funLoad() { 
+        getButton().click();
+        farm();
+    } 
 }
 
 main();
