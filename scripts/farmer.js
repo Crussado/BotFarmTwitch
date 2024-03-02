@@ -62,6 +62,9 @@ function isUserLogIn() {
 function main () {
     window.onload = function funLoad() {
         if(ifStreamPage() && isUserLogIn()) {
+            time = new Date().getTime();
+            chrome.runtime.sendMessage({ initialTime: time }, function(response) {
+            });
             initialPoints = getPoints();
             farm();
         }
