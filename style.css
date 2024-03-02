@@ -12,6 +12,7 @@ h1 {
     font-family: 'Relief Dimitri';
     text-align: center;
     color: white;
+    margin-bottom: 0;
 }
 
 body {
@@ -26,6 +27,7 @@ body {
     font-size: 20px;
     height: 100%;
     padding-bottom: 30px;
+    margin-top: 0;
 }
 
 .container {

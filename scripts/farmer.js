@@ -44,7 +44,7 @@ function farm() {
     if (firstGet) {
         initialPoints = points;
     }
-    chrome.runtime.sendMessage({ informPoints: points - initialPoints }, function(response) {
+    chrome.runtime.sendMessage({ informPoints: (points - initialPoints) }, function(response) {
     });
     setTimeout(() => {
         farm();
