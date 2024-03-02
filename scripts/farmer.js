@@ -32,8 +32,12 @@ function formatPoints(rawPoints) {
 function getPoints() {
     let button = document.querySelector(`button[aria-label="${POINT_BUTTON_LABEL}"]`);
     if (button) {
-        firstGet = false;
-        return formatPoints(button.textContent);
+        points = formatPoints(button.textContent);
+        if (firstGet) {
+            firstGet = false;
+            initialPoints = points;
+        }
+        return points;
     }
     return 0;
 }
@@ -41,9 +45,7 @@ function getPoints() {
 function farm() {
     farmPoints();
     let points = getPoints();
-    if (firstGet) {
-        initialPoints = points;
-    }
+    console.log(points, initialPoints, firstGet);
     chrome.runtime.sendMessage({ informPoints: (points - initialPoints) }, function(response) {
     });
     setTimeout(() => {
