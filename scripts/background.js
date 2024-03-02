@@ -3,7 +3,10 @@ let automaticPoints = 0;
 let initialTime = 0;
 
 function getTime() {
-  return Math.round((new Date().getTime() - initialTime) / (1000 * 60));
+  if (initialTime) {
+    return Math.round((new Date().getTime() - initialTime) / (1000 * 60));
+  }
+  return 0;
 }
 
 function renderPoints() {
