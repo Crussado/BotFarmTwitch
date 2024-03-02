@@ -1,6 +1,6 @@
 @font-face {
-    font-family: 'Relief Dimitri';
-    src: url(./fonts/DIMIS___.TTF);
+    font-family: 'twitch';
+    src: url(./fonts/Twitchy.TV.ttf);
 }
 
 @font-face {
@@ -9,17 +9,21 @@
 }
 
 h1 {
-    font-family: 'Relief Dimitri';
+    font-family: 'twitch';
     text-align: center;
     color: white;
-    margin-bottom: 0;
+    margin: 0;
+    text-shadow: 5px 5px 5px #888888;
+    line-height: 2;
 }
 
 body {
     width: 300px;
-    height: 200px;
+    /* height: 200px; */
     background-color: #9147ff;
     color: white;
+    border: 5px solid #846c9b;
+    margin: 0;
 }
 
 .details {
@@ -27,7 +31,7 @@ body {
     font-size: 20px;
     height: 100%;
     padding-bottom: 30px;
-    margin-top: 0;
+    margin-top: 30px;
 }
 
 .container {
