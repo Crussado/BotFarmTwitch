@@ -1,13 +1,19 @@
-const TIME_BUTTON = 900003;
+const TIME_BUTTON = 10000; // 10 seconds
+const CHAT_CLASS = 'stream-chat';
+const ANON_USER_CLASS = 'anon-user';
+const BUTTON_LABEL = 'Claim Bonus';
+const BONUS_POINTS = 50;
 
 function getButton() {
-    return document.querySelectorAll('button.ScCoreButton-sc-1qn4ixc-0.ScCoreButtonSuccess-sc-1qn4ixc-5')[0];
+    return document.querySelector('button[aria-label="' + BUTTON_LABEL + '"]');
 }
 
 function getPoints() {
     const button = getButton();
         if (button) {
-            button.click()
+            button.click();
+            chrome.runtime.sendMessage({updatePoints: BONUS_POINTS}, function(response) {
+            });
         }
 }
 
@@ -19,12 +25,16 @@ function farm() {
 }
 
 function ifStreamPage() {
-    return document.querySelectorAll('h4#chat-room-header-label').length == 1;
+    return document.querySelectorAll('.'+CHAT_CLASS).length > 0;
+}
+
+function isUserLogIn() {
+    return document.querySelectorAll('.'+ANON_USER_CLASS).length === 0;
 }
 
 function main () {
     window.onload = function funLoad() {
-        if(ifStreamPage()) {
+        if(ifStreamPage() && isUserLogIn()) {
             farm();
         }
     }

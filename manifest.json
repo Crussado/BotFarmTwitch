@@ -3,14 +3,16 @@
     "description": "Bot para farmear puntos en la plataforma de Twitch.",
     "version": "1.0",
     "manifest_version": 3,
-
     "action": {
         "default_popup": "popup.html"
+    },
+    "background": {
+        "service_worker": "./scripts/background.js"
     },
     "content_scripts":[
         {
             "matches": ["https://www.twitch.tv/*"],
-            "js": ["/scripts/farmer.js"]
+            "js": ["./scripts/farmer.js"]
         }
     ]
 
