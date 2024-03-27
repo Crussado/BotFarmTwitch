@@ -1,15 +1,15 @@
 const TIME_BUTTON = 10000; // 10 seconds
 const CHAT_CLASS = 'stream-chat';
 const ANON_USER_CLASS = 'anon-user';
-const BONUS_BUTTON_LABEL = 'Claim Bonus';
-const POINT_BUTTON_LABEL = 'Points Balance';
+const BONUS_BUTTON_LABEL = ['Claim Bonus', 'Reclamar bonificación'];
+const POINT_BUTTON_LABEL = ['Points Balance', 'Saldo de puntos'];
 const BONUS_POINTS = 50;
 
 initialPoints = 0;
 firstGet = true;
 
 function getButton() {
-    return document.querySelector(`button[aria-label="${BONUS_BUTTON_LABEL}"]`);
+    return document.querySelector(`button[aria-label="${BONUS_BUTTON_LABEL[0]}"]`) || document.querySelector(`button[aria-label="${BONUS_BUTTON_LABEL[1]}"]`);
 }
 
 function farmPoints() {
@@ -30,7 +30,7 @@ function formatPoints(rawPoints) {
 }
 
 function getPoints() {
-    let button = document.querySelector(`button[aria-label="${POINT_BUTTON_LABEL}"]`);
+    let button = document.querySelector(`button[aria-label="${POINT_BUTTON_LABEL[0]}"]`) || document.querySelector(`button[aria-label="${POINT_BUTTON_LABEL[1]}"]`);
     if (button) {
         points = formatPoints(button.textContent);
         if (firstGet) {
