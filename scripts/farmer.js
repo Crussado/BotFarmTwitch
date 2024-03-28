@@ -1,15 +1,25 @@
 const TIME_BUTTON = 10000; // 10 seconds
 const CHAT_CLASS = 'stream-chat';
 const ANON_USER_CLASS = 'anon-user';
+const STREAM_CLASS = 'channel-info-content';
 const BONUS_BUTTON_LABEL = ['Claim Bonus', 'Reclamar bonificación'];
 const POINT_BUTTON_LABEL = ['Points Balance', 'Saldo de puntos'];
 const BONUS_POINTS = 50;
 
-initialPoints = 0;
-firstGet = true;
+let initialPoints = 0;
+let firstGet = true;
+let points = 0;
+let stream = '';
 
 function getButton() {
     return document.querySelector(`button[aria-label="${BONUS_BUTTON_LABEL[0]}"]`) || document.querySelector(`button[aria-label="${BONUS_BUTTON_LABEL[1]}"]`);
+}
+
+function getStream() {
+    const container_stream = document.querySelector(`div.${STREAM_CLASS}`);;
+    if (container_stream) {
+        return container_stream.querySelector('a').href;
+    }
 }
 
 function farmPoints() {
@@ -43,9 +53,11 @@ function getPoints() {
 }
 
 function farm() {
+    if(getStream() !== stream) {
+        track()
+    }
     farmPoints();
     let points = getPoints();
-    console.log(points, initialPoints, firstGet);
     chrome.runtime.sendMessage({ informPoints: (points - initialPoints) }, function(response) {
     });
     setTimeout(() => {
@@ -61,15 +73,25 @@ function isUserLogIn() {
     return document.querySelectorAll('.'+ANON_USER_CLASS).length === 0;
 }
 
+function checkStream() {
+    return ifStreamPage() && isUserLogIn();
+}
+
+function track() {
+    if(checkStream()) {
+        firstGet = true;
+        time = new Date().getTime();
+        chrome.runtime.sendMessage({ initialTime: time }, function(response) {
+        });
+        initialPoints = getPoints();
+        stream = getStream();
+        farm();
+    }
+}
+
 function main () {
     window.onload = function funLoad() {
-        if(ifStreamPage() && isUserLogIn()) {
-            time = new Date().getTime();
-            chrome.runtime.sendMessage({ initialTime: time }, function(response) {
-            });
-            initialPoints = getPoints();
-            farm();
-        }
+        track()
     }
 }
 

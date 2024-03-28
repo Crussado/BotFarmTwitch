@@ -33,19 +33,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
         renderPoints();
     } else if (request.initialTime) {
       initialTime = request.initialTime;
+      farmPointsByBonus = 0;
+      automaticPoints = 0;
     }
 });
-
-
-chrome.tabs.onUpdated.addListener(function
-  (tabId, changeInfo, tab) {
-
-    console.log(changeInfo);
-    console.log(tab);
-    // read changeInfo data and do something with it (like read the url)
-    if (changeInfo.status === 'complete') {
-      // do something here
-
-    }
-  }
-);
